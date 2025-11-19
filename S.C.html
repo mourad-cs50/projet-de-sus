@@ -1,75 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="S.C.css"> 
+    <link rel="stylesheet" href="S.C.css">
     <script defer src="S.C.js"></script>
 </head>
 
 <body>
-<section class="section"> 
+    <section class="section">
 
- <div class="sider">
-         <header>
-            <h1>Staff Members (Unassigned)</h1>
+        <div class="sider">
+            <header>
+                <h1>Staff Members (Unassigned)</h1>
 
-            <div class="showinfo">
-           <img src="8380015.jpg" alt="">
-           <h4>mourad</h4>
-           <a href="">Edit</a>
-           </div>
+                <div class="showinfo">
+                    <img src="8380015.jpg" alt="">
+                    <h4>mourad</h4>
+                    <a href="">Edit</a>
+                </div>
 
-        </header>
-        <ul>
-           
-        </ul>
-        <div>
-            
-        </div  >
-         <button class="add-new">
-    <img src="user.png" alt="" class="btn-img">
-    <span class="btn-text">Add new worker</span>
-</button>
+            </header>
+            <ul>
 
-    </div>
+            </ul>
+            <div>
 
-    <div class="content">
-        <img src="plan-6918d7e78ba30539026036.jpg" >
-    </div>
+            </div>
+            <button class="add-new">
+                <img src="user.png" alt="" class="btn-img">
+                <span class="btn-text">Add new worker</span>
+            </button>
 
-    <div  class="modalcontainer" >
- <h4>Name:</h4>   
-<input type="text">
- <h4>Role:</h4>   
-<select name="" id=""><option>role:</option></select>
-<h4>Photo (url/select)</h4> 
-<a href=""><img src="8380015.jpg" alt=""></a>
-<input type="url">  
-<input type="file" >
+        </div>
 
-<div class="insidemodalcontainer">
- <h4>Company:</h4>   
-<input type="text">
- <h4>Role:</h4>   
-<input type="text">
- <h4>From:</h4>   
-<input type="date">
- <h4>To:</h4>   
-<input type="date">
-</div>
+        <div class="content">
+            <img src="plan-6918d7e78ba30539026036.jpg">
+        </div>
 
-<div  class="insertmodalbtn">
- <button  id="cancelbutton" >Close</button>
- <input type="submit">
-</div>
+        <div class="modalcontainer">
+            <form id="hideform">
+                <h4>Name:</h4>
+                <input id="workerName" type="text">
+                <h4>Role:</h4>
+                <select name="" id="workerRole">
+                    <option>Confirence Room</option>
+                    <option>Reception</option>
+                    <option>Servers Room</option>
+                    <option>Security Room</option>
+                    <option>Staff Room</option>
+                    <option>Vault</option>
+                </select>
+                <img  id="inputImage" alt="">
+                <h4>Photo (url/select)</h4>
+                <input id="imageURl" type="url">
+
+            </form>
+            <button id="addexperiencebtn">Ajouter des expériences</button>
+
+            <div class="insertmodalbtn">
+                <button id="cancelbutton">Close</button>
+                <input id="submitbtn" type="submit">
+            </div>
 
 
-</div> 
+        </div>
 
-</section>
-   
+    </section>
+
 
 </body>
+
 </html>
