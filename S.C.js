@@ -6,12 +6,16 @@ let section = document.querySelector(".section");
 let addexperiencebtn = document.querySelector("#addexperiencebtn");
 let submitbtn = document.querySelector("#submitbtn");
 let workerName = document.querySelector("#workerName");
+let workerEmail = document.querySelector("#workerEmail");
+let workerPhone = document.querySelector("#workerPhone");
 let workerRole = document.querySelector("#workerRole");
 let closeexperienceTable = document.querySelector("#closeexperienceTable");
 let inputImage = document.querySelector("#inputImage");
 let imageURl = document.querySelector("#imageURl");
 let hideform = document.querySelector("#hideform");
 let experienceINput = document.querySelectorAll(".experienceINput");
+let cancelInfomodal = document.querySelector("#cancelInfomodal");
+
 
 addnewbtn.addEventListener("click", () => {
   openModal();
@@ -29,14 +33,13 @@ addnewbtn.addEventListener("click", () => {
 });
 
 submitbtn.addEventListener("click", addnewworker);
-
 imageURl.addEventListener("input", UpdateimageProfile);
 
-// showInFoBtn.addEventListener('click', showALldata);
 
 function openModal() {
   modalcontainer.style.visibility = "visible";
   modalcontainer.style.display = "flex";
+ ;
 }
 
 function closeModal() {
@@ -44,6 +47,8 @@ function closeModal() {
   hideform.reset();
   inputImage.src = "";
 }
+
+
 
 function UpdateimageProfile() {
   inputImage.setAttribute("src", imageURl.value.trim());
@@ -86,6 +91,8 @@ function addnewworker() {
   let newWorker = {
     id: Date.now() + Math.floor(Math.random() * 1000),
     Name: workerName.value,
+    Email: workerEmail.value,
+    Phone: workerPhone.value,
     Role: workerRole.value,
     Image: imageURl.value,
     Experiences: [],
@@ -96,7 +103,7 @@ function addnewworker() {
 
     newWorker.Experiences.push({
       Company: inputs[0].value,
-      Role: inputs[1].value,
+      exRole: inputs[1].value,
       From: inputs[2].value,
       To: inputs[3].value,
     });
@@ -140,34 +147,71 @@ function showAsideData() {
    
     console.log(btn);
     btn.addEventListener("click", (e) => {
+      const id = e.target.dataset.id;
+      showWorkerInfo(id)
       console.log(e.target);
-      
     });
 
     // btn.addEventListener('click', showWorkerInfo(id))
   });
 }
 
-// function showWorkerInfo (id){
+function showWorkerInfo (id){
 
 // chercher f lista bdak id o tle3 les info dyalu f mpodal mni tl9ah
+const worker = workers.find(w => w.id == id )
 
-//   const showData = document.createElement('div');
-//   showData.className = 'showAllInformation';
+if (!worker) {
+  alert('worker is not found');
+  return;
+}
+  const showData = document.createElement('div');
+  showData.className = 'showAllInformation';
 
-//   showData.innerHTML = ` <div class="showAllInformation">
-//     <h3>name:</h3>
-//     <p>Mourad</p>
-//     <h3>Role:</h3>
-//     <p>reciptions</p>
-//      <h3>Profile:</h3>
-//      <img src="8380015.jpg" alt="">
-//      <div>
-//         <h3>Experiences</h3>
-//      </div>
-// </div>
-// `;
+  showData.innerHTML = `
+  <div class="modal">
+    <div class="modal-header">
+      <div class="user-info">
+        <img src="${worker.Image}" class="profile-img" />
+        <div class="name-block">
+          <h2> ${worker.Name}</h2>
+          <p >${worker.Role}</p>
+        </div>
+      </div>
+    </div>
 
-//  divtoshowinfo.innerHTML= show;
+    <div class="modal-body">
+      <label>Phone number</label>
+      <div class="input-row">
+       <h3>${worker.Phone}</h3>
+        
+      </div>
 
-// }
+      <label>Email address</label>
+       <h3>${worker.Email}</h3>
+
+      
+      <div>
+        <label>Experiences</label>
+        ${worker.Experiences.map(exp =>`
+          <p>Company:${exp.Company}</p>
+        <p>Role:${exp.exRole}</p>
+        <p>From:${exp.From}</p>
+        <p>To:${exp.To}</p>
+          `).join('')}
+     </div>
+  </div>
+
+  <button id="cancelInfomodal">Cancel</button>
+</div>
+
+`;
+
+ document.body.appendChild(showData)
+ 
+ const cancelInfomodal= document.querySelector("#cancelInfomodal");
+  cancelInfomodal.addEventListener("click", () => {
+    showData.remove();
+  });
+
+}
