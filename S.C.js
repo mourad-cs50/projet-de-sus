@@ -226,45 +226,60 @@ function formValidation() {
   let isValid = true;
 
   document.querySelectorAll("input").forEach((input) => {
-    input.style.border = "1px solid #ccccccff";
+    input.style.border = "1px solid #ccc";
   });
 
  
-  if (workerName.value.trim() === "") {
+  let nameRegex = /^[\u0600-\u06FFa-zA-Z\s]{3,}$/;
+  if (!nameRegex.test(workerName.value.trim())) {
     workerName.style.border = "2px solid red";
     isValid = false;
   }
-  if (workerEmail.value.trim() === "") {
+
+
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(workerEmail.value.trim())) {
     workerEmail.style.border = "2px solid red";
     isValid = false;
   }
-  if (workerPhone.value.trim() === "") {
+
+
+ let phoneRegex = /^(06|07|05)[0-9]{8}$/;
+if (!phoneRegex.test(workerPhone.value.trim())) {
     workerPhone.style.border = "2px solid red";
     isValid = false;
-  }
-  if (workerRole.value.trim() === "") {
-    workerRole.style.border = "2px solid red";
-    isValid = false;
-  }
-  if (imageURl.value.trim() === "") {
-    imageURl.style.border = "2px solid red";
-    isValid = false;
-  }
-
-  
-  document.querySelectorAll(".insidemodalcontainer:not(:first-child)").forEach((div) => {
-      const inputs = div.querySelectorAll(".experienceINput");
-
-      inputs.forEach((inp) => {
-        if (inp.value.trim() === "") {
-          inp.style.border = "2px solid red";
-          isValid = false;
-        }
-      });
-    });
-
-  
-  return isValid;
 }
 
+  
+ const url = imageURl.value.trim();
+    const imageRegex = /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|svg|bmp)$/i;
+    if (!imageRegex.test(url)) {
+        imageURl.style.border = "2px solid red";
+        isValid = false;
+    }
+
+
+ if (workerRole.value.trim() === "") {
+  workerRole.style.border = "2px solid red";
+    isValid = false;
+  }
+  
+ 
+  document.querySelectorAll(".insidemodalcontainer:not(:first-child)").forEach((div) => {
+    const inputs = div.querySelectorAll(".experienceINput");
+
+    inputs.forEach((inp) => {
+      if (inp.value.trim() === "") {
+        inp.style.border = "2px solid red";
+        isValid = false;
+      }
+    });
+  });
+
+  if (!isValid) {
+       alert('the inputs are empty or you dont respect the form');
+  }
+
+  return isValid;
+}
 
