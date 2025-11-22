@@ -32,7 +32,13 @@ addnewbtn.addEventListener("click", () => {
   hideexperiencesbare();
 });
 
-submitbtn.addEventListener("click", addnewworker);
+submitbtn.addEventListener("click", () => {
+  if (formValidation()) {
+    addnewworker();
+  }
+});
+
+
 imageURl.addEventListener("input", UpdateimageProfile);
 
 
@@ -215,3 +221,50 @@ if (!worker) {
   });
 
 }
+
+function formValidation() {
+  let isValid = true;
+
+  document.querySelectorAll("input").forEach((input) => {
+    input.style.border = "1px solid #ccccccff";
+  });
+
+ 
+  if (workerName.value.trim() === "") {
+    workerName.style.border = "2px solid red";
+    isValid = false;
+  }
+  if (workerEmail.value.trim() === "") {
+    workerEmail.style.border = "2px solid red";
+    isValid = false;
+  }
+  if (workerPhone.value.trim() === "") {
+    workerPhone.style.border = "2px solid red";
+    isValid = false;
+  }
+  if (workerRole.value.trim() === "") {
+    workerRole.style.border = "2px solid red";
+    isValid = false;
+  }
+  if (imageURl.value.trim() === "") {
+    imageURl.style.border = "2px solid red";
+    isValid = false;
+  }
+
+  
+  document.querySelectorAll(".insidemodalcontainer:not(:first-child)").forEach((div) => {
+      const inputs = div.querySelectorAll(".experienceINput");
+
+      inputs.forEach((inp) => {
+        if (inp.value.trim() === "") {
+          inp.style.border = "2px solid red";
+          isValid = false;
+        }
+      });
+    });
+
+  
+  return isValid;
+}
+
+
