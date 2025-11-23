@@ -251,19 +251,17 @@ if (!phoneRegex.test(workerPhone.value.trim())) {
 }
 
   
- const url = imageURl.value.trim();
-    const imageRegex = /^https?:\/\/.+\.(jpg|jpeg|png|gif|webp|svg|bmp)$/i;
-    if (!imageRegex.test(url)) {
+
+    if ( imageURl.value.trim() === '') {
         imageURl.style.border = "2px solid red";
         isValid = false;
     }
 
 
- if (workerRole.value.trim() === "") {
-  workerRole.style.border = "2px solid red";
-    isValid = false;
-  }
-  
+ if (workerRole.value.trim() === '') {
+        workerRole.style.border = "2px solid red";
+        isValid = false;
+    }
  
   document.querySelectorAll(".insidemodalcontainer:not(:first-child)").forEach((div) => {
     const inputs = div.querySelectorAll(".experienceINput");
