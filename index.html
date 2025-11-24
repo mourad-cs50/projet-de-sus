@@ -41,12 +41,12 @@
         </div>
 
       <div class="content">
-    <div class="box" id="box1"><button id="btn1">+</button></div>
-    <div class="box" id="box2"><button id="btn2">+</button></div>
-    <div class="box" id="box3"><button>+</button></div>
-    <div class="box" id="box4"><button>+</button></div>
-    <div class="box" id="box5"><button>+</button></div>
-    <div class="box" id="box6"><button>+</button></div>
+    <div class="box" id="box1"><div id="roomContainer"><h3>Confirence</h3></div><button id="zoneBtn1">+</button></div>
+    <div class="box" id="box2"><div id="roomContainer"><h3>Reciption</h3></div><button id="zoneBtn2">+</button></div>
+    <div class="box" id="box3"><div id="roomContainer-right"><h3>Server room</h3></div><button id="zoneBtn3">+</button></div>
+    <div class="box" id="box4"><div id="roomContainer-right"><h3>Security room</h3></div><button id="zoneBtn4">+</button></div>
+    <div class="box" id="box5"><div id="roomContainer-right"><h3>staff room</h3></div><button id="zoneBtn5">+</button></div>
+    <div class="box" id="box6"><div id="roomContainer-right"><h3>vault</h3></div><button id="zoneBtn6">+</button></div>
 </div>
 
         <div class="modalcontainer">
@@ -60,12 +60,12 @@
                 <h4>Role:</h4>
                 <select name="" id="workerRole">
                     <option value="" disabled selected>Select role</option>
-                    <option>Confirence Room</option>
-                    <option>Reception</option>
-                    <option>Servers Room</option>
-                    <option>Security Room</option>
-                    <option>Staff Room</option>
-                    <option>Vault</option>
+                    <option value="Confirence Room">Confirence Room</option>
+                    <option value="Reception">Reception</option>
+                    <option value="Servers Room">Servers Room</option>
+                    <option value="Security Room">Security Room</option>
+                    <option value="Staff Room">Staff Room</option>
+                    <option value="Vault">Vault</option>
                 </select>
                 <img id="inputImage" alt="">
                 <h4>Photo (url)</h4>
@@ -94,6 +94,14 @@
     </section>
 
    
+
+<div id="employeeModal" class="employee-modal" style="display:none;">
+  <div class="modal-content">
+    <h2>Choose Employees</h2>
+    <div id="employeesContainer"></div>
+    <button id="closeEmployeeModal">Close</button>
+  </div>
+</div>
 
 
 

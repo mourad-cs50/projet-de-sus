@@ -15,6 +15,12 @@ let imageURl = document.querySelector("#imageURl");
 let hideform = document.querySelector("#hideform");
 let experienceINput = document.querySelectorAll(".experienceINput");
 let cancelInfomodal = document.querySelector("#cancelInfomodal");
+let zoneBtn1 = document.querySelector("#zoneBtn1");
+
+const employeeModal = document.getElementById("employeeModal");
+const employeesContainer = document.getElementById("employeesContainer");
+const closeEmployeeModal = document.getElementById("closeEmployeeModal");
+let currentBox = null;
 
 
 addnewbtn.addEventListener("click", () => {
@@ -40,6 +46,8 @@ submitbtn.addEventListener("click", () => {
 
 
 imageURl.addEventListener("input", UpdateimageProfile);
+
+
 
 
 function openModal() {
@@ -280,4 +288,134 @@ if (!phoneRegex.test(workerPhone.value.trim())) {
 
   return isValid;
 }
+
+
+// ربط أزرار + للبوكسات
+document.querySelectorAll(".box button").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const box = e.target.parentElement;
+    currentBox = box;
+    const boxId = box.id;
+    const roleMap = {
+      box1: "Confirence Room",
+      box2: "Reception",
+      box3: "Servers Room",
+      box4: "Security Room",
+      box5: "Staff Room",
+      box6: "Vault"
+    };
+    const currentBoxRole = roleMap[boxId];
+    showEmployeeModal(currentBoxRole);
+  });
+});
+
+
+function showEmployeeModal(boxRole) {
+  employeesContainer.innerHTML = "";
+  const filteredWorkers = workers.filter(worker => worker.Role === boxRole);
+
+  filteredWorkers.forEach(worker => {
+    const card = document.createElement("div");
+    card.className = "employee-card";
+    card.innerHTML = `
+      <img src="${worker.Image || '8380015.jpg'}" width="40" height="40">
+      <span>${worker.Name}</span>
+      <button class="addEmployeeBtn">Add</button>
+    `;
+    employeesContainer.appendChild(card);
+
+    card.querySelector(".addEmployeeBtn").addEventListener("click", () => {
+      addEmployeeToBox(worker);
+    });
+  });
+
+  employeeModal.style.display = "flex";
+}
+
+
+document.querySelectorAll(".box button").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    const box = e.target.parentElement;
+    currentBox = box;
+    const boxId = box.id;
+    const roleMap = {
+      box1: "Confirence Room",
+      box2: "Reception",
+      box3: "Servers Room",
+      box4: "Security Room",
+      box5: "Staff Room",
+      box6: "Vault"
+    };
+    const currentBoxRole = roleMap[boxId];
+    showEmployeeModal(currentBoxRole);
+  });
+});
+
+
+function showEmployeeModal(boxRole) {
+  employeesContainer.innerHTML = "";
+  const filteredWorkers = workers.filter(worker => worker.Role === boxRole);
+
+  filteredWorkers.forEach(worker => {
+    const card = document.createElement("div");
+    card.className = "employee-card";
+    card.innerHTML = `
+      <img src="${worker.Image || '8380015.jpg'}" width="40" height="40">
+      <span>${worker.Name}</span>
+      <button class="addEmployeeBtn">Add</button>
+    `;
+    employeesContainer.appendChild(card);
+
+    card.querySelector(".addEmployeeBtn").addEventListener("click", () => {
+      addEmployeeToBox(worker);
+    });
+  });
+
+  employeeModal.style.display = "flex";
+}
+
+
+function addEmployeeToBox(worker) {
+  if (!currentBox) return;
+
+  const roleMap = {
+    box1: "Confirence Room",
+    box2: "Reception",
+    box3: "Servers Room",
+    box4: "Security Room",
+    box5: "Staff Room",
+    box6: "Vault"
+  };
+  
+ 
+  const existingWorker = Array.from(currentBox.querySelectorAll(".workerZonecard")).some(card => {
+    return card.querySelector("h3").textContent === worker.Name;
+  });
+  if (existingWorker) {
+    alert("This worker is already assigned");
+    return;
+  }
+
+  const workerCard = document.createElement("div");
+  workerCard.className = "workerZonecard";
+  workerCard.innerHTML = `
+  <img src="${worker.Image}" alt="">
+  <h3>${worker.Name}</h3>
+  `;
+  currentBox.appendChild(workerCard);
+
+  const modalCards = Array.from(employeesContainer.querySelectorAll(".employee-card"));
+  modalCards.forEach(card => {
+    if (card.querySelector("span").textContent === worker.Name) {
+      card.remove();
+    }
+  });
+}
+
+closeEmployeeModal.addEventListener("click", () => {
+  employeeModal.style.display = "none";
+});
+
+
+
 
