@@ -20,8 +20,8 @@ body {
 
 .content {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 3 columns */
-  grid-template-rows: auto auto auto;      /* 3 rows */
+  grid-template-columns: repeat(3, 1fr);  
+  grid-template-rows: auto auto auto;      
   gap: 11px;
   width: 600px;
   margin: 40px auto;
@@ -513,7 +513,7 @@ cursor: pointer;
    flex: 0 0 auto;            
    margin: 2px; 
    margin-left: 55px;
-   gap: 0px;
+   gap: 25px;
    
 
 }
@@ -525,15 +525,12 @@ width: 30px;
 border-radius: 50%;
 }
 
-.workerZonecard img{
+.workerZonecard h3{
 margin-top: 2px;
 height: 30px;
 width: 30px;
 border-radius: 50%;
 }
-
-
-
 
 
 #roomContainer{
@@ -562,4 +559,152 @@ border-radius: 50%;
   border-radius: 30px;
   background-color: #1697e7;
   width: 140px;
+}
+
+
+
+
+@media (max-width: 900px) {
+    .section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sider {
+        position: relative;
+        background-color: white;
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        order: -1;
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        width: 95%;
+        margin: 20px auto;
+        padding: 10px;
+        margin-left: auto;
+    }
+    
+    .box {
+        width: 100% !important;
+        height: 200px !important;
+        margin: 0 !important;
+        grid-column: auto !important;
+        grid-row: auto !important;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        position: relative;
+    }
+    
+    #box1, #box2, #box3, #box4, #box5, #box6 {
+        margin: 0 !important;
+        width: 100% !important;
+        height: 200px !important;
+    }
+
+    .content button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: large;
+        background-color: #cb6ce6;
+        color: #fff;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #roomContainer, #roomContainer-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 2px;
+        height: 30px;
+        border-radius: 30px;
+        background-color: #1697e7;
+        margin: 5px auto;
+        width: 140px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sider {
+        position: relative;
+        background-color: white;
+        width: 100%;
+        height: auto;
+        padding: 15px;
+        order: -1;
+    }
+
+    .content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        width: 95%;
+        margin: 15px auto;
+        padding: 10px;
+        margin-left: auto;
+    }
+    
+    .box {
+        width: 100% !important;
+        height: 180px !important;
+        margin: 0 !important;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        position: relative;
+    }
+    
+    #box1, #box2, #box3, #box4, #box5, #box6 {
+        margin: 0 !important;
+        width: 100% !important;
+        height: 180px !important;
+    }
+
+    .content button {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: large;
+        background-color: #cb6ce6;
+        color: #fff;
+        height: 30px;
+        width: 30px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #roomContainer, #roomContainer-right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: solid 2px;
+        height: 30px;
+        border-radius: 30px;
+        background-color: #1697e7;
+        margin: 5px auto;
+        width: 140px;
+    }
 }
